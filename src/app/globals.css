@@ -1,3 +1,36 @@
+/* Adding CSS */
+
+@import url('https://fonts.googleapis.com/css2?family=Jersey+10&display=swap');
+
+:root{
+  --train-white: #F5F1ED;
+  --train-grey: #70798C;
+  --train-black: #252323;
+  --train-yellow: #DAD2BC;
+  --train-brown: #A99985;
+  --train-blue: #38b3e4;
+
+  --title-font: "Jersey 10", sans-serif;
+
+  --background-logo: linear-gradient(0deg, var(--train-brown) 35%, var(--train-yellow) 100%);
+  --bg-404: linear-gradient(339deg, rgba(138,205,250,1) 75%, rgba(255,255,214,1) 100%);
+}
+
+@media (prefers-color-scheme: dark){
+  :root{
+    --train-white: #252323;
+    --train-grey: #373e4d;
+    --train-black: #F5F1ED;
+    --train-yellow: #69614a;
+    --train-brown: #554737;
+    --train-blue: #1d45ca;
+
+    --bg-404: linear-gradient(0deg, rgba(9,38,185,1) 0%, rgba(5,3,65,1) 100%);
+  }
+}
+
+/* Default global CSS */
+
 :root {
   --max-width: 1100px;
   --border-radius: 12px;
@@ -82,17 +115,13 @@
 html,
 body {
   max-width: 100vw;
-  overflow-x: hidden;
+  overflow: hidden;
 }
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  background: var(--train-blue);
+  height: 100dvh;
 }
 
 a {
@@ -103,5 +132,9 @@ a {
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
+  }
+
+  body{
+    background: var(--train-blue);
   }
 }

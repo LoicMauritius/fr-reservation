@@ -1,0 +1,76 @@
+header{
+    position: sticky;
+    display: flex;
+    flex-direction: row;
+    height: 12dvh;
+    padding: 1dvh 3dvw;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    border-bottom: 2px solid var(--train-black);
+    background: var(--train-white);
+    z-index: 500;
+}
+
+header>div{
+    display: flex;
+    flex-direction: row;
+    gap: 0.5dvw;
+    height: 100%;
+}
+
+header>div>.logo{
+    height: 100%;
+    width: auto;
+    border: 1px solid var(--train-black) !important;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    background: var(--train-blue);
+    cursor: pointer;
+}
+
+header>div>h1 {
+    display: flex;
+    font-size: calc(17px + 2vw);
+    align-items: center;
+    color: var(--train-blue);
+}
+
+header>nav{
+    display: flex;
+    max-width: 30dvw;
+    width: 30%;
+    flex-direction: row;
+    justify-content: baseline;
+    align-items: flex-end;
+    gap: 1dvw;
+    flex-wrap: wrap;
+}
+
+header>nav>*{
+    flex: 1;
+    text-align: center;
+    cursor: pointer;
+    background: var(--train-blue);
+    padding: 1dvh 1dvw;
+    height: 100%;
+    width: auto;
+    clip-path: circle(27%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+header>nav>*:hover{
+    background: var(--train-yellow) ;
+}
+
+header>nav>*:active{
+    border: 2px inset var(--train-brown);
+    background: var(--train-yellow) ;
+}
+
+header>nav>a>img{
+    max-width: 40px;
+    width: 100%;
+    height: auto;
+}
