@@ -9,15 +9,12 @@ import IMGdelete from '@/assets/img/supprimer.png';
 
 const Admin = () => {
     const [data, setData] = useState(null);
+    const [errorDisplay, setErrorDisplay] = useState("");
 
     async function deleteUser(id_user: number) {
         try {
-            const response = await axios.delete('/api/users/remove', {
-                data: {
-                    id_user
-                }
-            });
-            setData(response.data);
+            const response = await axios.delete(`/api/users/remove?id_user=${id_user}`);
+            setErrorDisplay(response.data);
             console.log(response.data);
         } catch (error) {
             console.error(error);
@@ -39,6 +36,7 @@ const Admin = () => {
 
     return(
         <>
+            { errorDisplay ? <div className="error">{ errorDisplay.message }</div>: <></>}
             <div className="Users">
                 {data ? data.map((user) => (
                     <div key={user._id}>

@@ -1,10 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { connectToDB } from '../util/cnx';
-import User from '../model/UserModel';
+import getUserModel from '../model/UserModel';
 
 export async function POST(req: NextRequest) {
     try{
         connectToDB();
+
+        const User = getUserModel();
 
         //Fetch all users on the data base
         const users = await User.find({});

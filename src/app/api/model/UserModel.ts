@@ -1,4 +1,4 @@
-import { Schema, model } from "mongoose";
+import { Schema, model, models } from "mongoose";
 
 const UserSchema = new Schema({
   id_User: Number,
@@ -12,4 +12,11 @@ const UserSchema = new Schema({
   treasury: [{ date: Date, balance: Number }]
 });
 
-export default model('User', UserSchema);
+export default function getUserModel() {
+  if (models.User) {
+    return models.User;
+  }
+
+  return model('User', UserSchema);
+}
+
