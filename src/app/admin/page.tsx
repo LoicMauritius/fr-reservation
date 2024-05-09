@@ -11,26 +11,29 @@ const Admin = () => {
     const [data, setData] = useState(null);
     const [errorDisplay, setErrorDisplay] = useState("");
 
+    const fetchData = async () => {
+        try {
+          const response = await axios.post('/api/users');
+          if(data != response.data) setData(response.data);
+        } catch (error) {
+          console.error(error);
+        }
+    };
+
     async function deleteUser(id_user: number) {
         try {
             const response = await axios.delete(`/api/users/remove?id_user=${id_user}`);
             setErrorDisplay(response.data);
             console.log(response.data);
+
+            fetchData();
         } catch (error) {
             console.error(error);
         }
     }
 
+    //Appel au début de la charge du composant
     useEffect(() => {
-        const fetchData = async () => {
-            try {
-              const response = await axios.post('/api/users');
-              if(data != response.data) setData(response.data);
-            } catch (error) {
-              console.error(error);
-            }
-        };
-      
         fetchData();
     }, []);
 
