@@ -1,0 +1,6 @@
+.compte {
+    margin: 1rem;
+    padding: 1rem;
+    overflow-y: auto;
+    height: 90vh;
+}

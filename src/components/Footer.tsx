@@ -7,7 +7,7 @@ const Footer = () => {
     return(
         <footer>
             <h2>Copyright</h2>
-            <p>Mauritius Loïc | Marya-Constantine Cédric | Riche Abdelrahim | Pushpakumar Laxhan</p>
+            <p>Mauritius Loïc | Mariya Constantine Cédric | Riche Abdelrahim | Pushpakumar Laxhan</p>
         </footer>
     );
 }
