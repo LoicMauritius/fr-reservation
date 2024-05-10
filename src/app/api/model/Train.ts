@@ -1,15 +1,21 @@
-import { Schema, model } from "mongoose";
+import { Schema, model, models } from "mongoose";
 
-const Train = model('Train', new Schema({
+const TrainSchema = new Schema({
     id_train: Number,
     gare_depart: String,
     gare_arrive: String,
-    date_depart: String,
-    date_arrive: String,
-    aller_retour: String,
+    date_depart: Date,
+    date_arrive: Date,
+    aller_retour: Boolean, //false juste aller -> true aller/retour
     max_place: Number,
-    nb_place: Number,
+    nb_place_dispo: Number,
     price: Number
-}))
+});
 
-export default Train;
+export default function getTrainModel() {
+    if (models.Train) {
+      return models.Train;
+    }
+  
+    return model('Train', TrainSchema);
+}
