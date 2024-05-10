@@ -1,10 +1,13 @@
 "use client";
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { fas, far, fal } from '@fortawesome/free-solid-svg-icons';
+
 const Compte = () => {
 
     return(
         <>
-            <div className="compte">
+            <FontAwesomeIcon icon={fas.faHouse} />
                 <h2>Compte</h2>
                 reogjeogjgorjtrg
                 ^gkgrpgjtrgotp 
@@ -209,7 +212,6 @@ const Compte = () => {
                 reogjeogjgorjtrg
                 ^gkgrpgjtrgotp 
                 eg^ggprgkprogpgojgoprjtgogorijgrgijrogrjgiorjgogjgorjg
-            </div>
         </>
     );
 }
