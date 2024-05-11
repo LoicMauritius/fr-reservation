@@ -8,13 +8,13 @@ const Footer = () => {
         <footer>
             <h2>Copyright</h2>
             <p>
-                Mauritius Loïc 
-                |
+                <a className="link" href="https://github.com/LoicMauritius" target="_blank" rel="noopener noreferrer">Mauritius Loïc</a>
+                &nbsp;|&nbsp;
                 <a className="link" href="https://github.com/cedric-mc/" target="_blank" rel="noopener noreferrer">Mariya Constantine Cédric</a>
-                |
-                Riche Abdelrahim 
-                |
-                Pushpakumar Laxhan
+                &nbsp;|&nbsp;
+                <a className="link" href="https://github.com/Abdelrahim-Riche" target="_blank" rel="noopener noreferrer">Riche Abdelrahim</a>
+                &nbsp;|&nbsp;
+                <a className="link" href="https://github.com/LaxhP" target="_blank" rel="noopener noreferrer">Pushpakumar Laxhan</a>
             </p>
         </footer>
     );
