@@ -28,7 +28,6 @@ footer>p {
 /* Classe css pour les liens du footer */
 .link {
     text-align: center;
-    color: var(--train-blue);
     cursor: pointer;
     transition: 0.3s;
 }
