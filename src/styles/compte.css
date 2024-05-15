@@ -7,9 +7,9 @@
 .form-container {
     display: flex;
     justify-content: space-between;
-    max-width: 600px;
+    max-width: var(--max-width);
     margin: auto;
-    background-color: #333;
+    background-color: var(--train-white);
     padding: 20px;
-    border-radius: 5px;
+    border-radius: var(--border-radius);
 }

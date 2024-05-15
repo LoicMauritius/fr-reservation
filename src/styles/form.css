@@ -2,30 +2,32 @@ form {
     display: flex;
     flex-direction: column;
     width: 45%;
-    background-color: #444;
+    background-color: var(--train-white);
     padding: 20px;
-    border-radius: 5px;
+    border-radius: var(--border-radius);
+    color: var(--train-black);
 }
 
 form h2 {
+    text-align: center;
     margin-bottom: 20px;
-    color: #fff;
+    color: var(--train-blue);
 }
 
 form input {
     margin-bottom: 10px;
     padding: 10px;
-    border: 1px solid #555;
-    background-color: #555;
-    color: #fff;
-    border-radius: 5px;
+    border: 1px solid var(--train-black);
+    background-color: var(--train-white);
+    color: var(--train-black);
+    border-radius: var(--border-radius);
 }
 
 form button {
     padding: 10px;
-    background-color: #4CAF50;
-    color: white;
+    background-color: var(--train-blue);
+    color: var(--train-white);
     border: none;
     cursor: pointer;
-    border-radius: 5px;
+    border-radius: var(--border-radius);
 }
