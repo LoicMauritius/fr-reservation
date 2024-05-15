@@ -3,3 +3,13 @@
     overflow-y: auto;
     height: 75vh;
 }
+
+.form-container {
+    display: flex;
+    justify-content: space-between;
+    max-width: 600px;
+    margin: auto;
+    background-color: #333;
+    padding: 20px;
+    border-radius: 5px;
+}
