@@ -15,3 +15,13 @@ export const ConnectUser = async (formdata: FormData) => {
         console.error(err);
     }
 }
+
+export const DisconnectUser = async () => {
+    try{
+        await connectToDB();
+
+        // Suppression du cookie de session
+    }catch(err){
+        console.error(err);
+    }
+}
