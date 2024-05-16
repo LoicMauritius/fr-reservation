@@ -10,7 +10,6 @@ export const ConnectUser = async (formdata: FormData) => {
         const email = formdata.get("email");
         const mdp = formdata.get("pwd");
 
-        const user = await User.
     }catch(err){
         console.error(err);
     }
