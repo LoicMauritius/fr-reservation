@@ -1,0 +1,321 @@
+.reservation{
+    display: flex;
+    z-index: 40;
+    height: 60dvh;
+    width: 60dvw;
+    justify-content: center;
+    gap: 2dvw;
+    flex-direction: column;
+}
+
+/* Reservation Filter */
+.reservation>.filter{
+    display: flex;
+    z-index: 40;
+    height: 100%;
+    width: 100%;
+    gap: 4dvw;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 5dvh 10dvw;
+}
+
+.reservation>.filter>*{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    flex: 1;
+}
+
+.reservation>.filter>.choice{
+    flex: 3;
+    gap: 2dvh;
+}
+
+.reservation>.filter>.choice>.gares{
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+}
+
+.reservation>.filter>.choice>.gares>*{
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    max-height: 62px;
+    border: 0.2px solid black;
+    background: white;
+    padding: 0 2dvw;
+    border-radius: 10px;
+    font-size: calc(10px + min(0.6dvh, 0.6dvw));
+    gap: 2dvw;
+}
+
+.reservation>.filter>.choice>*>div>label{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    flex: 1;
+}
+
+.reservation>.filter>.choice>*>div>input,select{
+    flex: 2;
+    outline: none;
+    border: none;
+    font-size: calc(12px + min(0.7dvh, 0.7dvw));
+    padding: 0 1dvw;
+    background: none;
+}
+
+.reservation>.filter>.choice>.dates{
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+}
+
+.reservation>.filter>.choice>.dates>*{
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    max-height: 62px;
+    border: 0.2px solid black;
+    background: white;
+    padding: 0 2dvw;
+    border-radius: 10px;
+    font-size: calc(10px + min(0.6dvh, 0.6dvw));
+    gap: 2dvw;
+}
+
+.reservation>.filter>.submit>input{
+    font-size: calc(12px + min(1.4dvh, 1.4dvw));
+    padding: 1dvh 2dvw;
+    border: none;
+    border-radius: 10px;
+    background: var(--link-color);
+    color: white;
+    cursor: pointer;
+}
+
+.swipe{
+    position: absolute;
+    bottom:7dvh;
+    width: 100%;
+    left: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.swipe>img{
+    width: 5dvw;
+    height: auto;
+    margin: auto;
+    animation: swipe-animate 2s infinite linear;
+}
+
+@keyframes swipe-animate{
+    from{
+        transform: translateY(0);
+    }50%{
+        transform: translateY(20px);
+    }to{
+        transform: translateY(0);
+    }
+}
+
+/* Reservation Tickets*/
+.TrainRides{
+    position: absolute;
+    top: 100dvh;
+    left: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 2dvh;
+    padding: 5dvh 5dvw;
+    background: var(--components-background-color);
+}
+
+.TrainRides>.rideInfos{
+    display: flex;
+    flex-direction: column;
+    background: white;
+    color: var(--text-color);
+    font-size: calc(9px + min(0.4dvh,0.4dvw));
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    border: 1px solid black;
+    border-radius: 20px;
+    padding: 3dvh 2dvw;
+}
+
+.TrainRides>.rideInfos>.ticketHeader{
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 0 5dvw;
+}
+
+.TrainRides>.rideInfos>.ticketHeader>#logo{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.TrainRides>.rideInfos>.ticketHeader>#logo>img{
+    max-width: 30px;
+    height: auto;
+}
+
+.TrainRides>.rideInfos>.ticketHeader>#stations{
+    flex: 4;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    border: 1px solid black;
+    padding: 0.5dvh 10dvw;
+}
+
+.TrainRides>.rideInfos>.ticketHeader>#stations>img{
+    width: auto;
+    max-height: 3dvh;
+}
+
+.TrainRides>.rideInfos>.ticketInformations{
+    flex: 3;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 1dvh 4dvw;
+    gap: 1dvw;
+}
+
+.TrainRides>.rideInfos>.ticketInformations>*{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    height: 100%;
+    padding: 2dvh 3dvw;
+    border: 1px solid black;
+}
+
+.TrainRides>.rideInfos>.ticketInformations>.infos{
+    flex: 3;
+    gap: 2dvh;
+    height: 100%;
+}
+
+.TrainRides>.rideInfos>.ticketInformations>.infos>#topInfos{
+    flex: 3;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 0.5dvh;
+}
+
+.TrainRides>.rideInfos>.ticketInformations>.infos>#topInfos>div{
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.TrainRides>.rideInfos>.ticketInformations>.infos>#topInfos>div>*{
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.TrainRides>.rideInfos>.ticketInformations>.infos>#bottomInfos{
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.TrainRides>.rideInfos>.ticketInformations>.infos>#bottomInfos>*{
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.TrainRides>.rideInfos>.ticketInformations>.infos>#bottomInfos>div{
+    flex: 2;
+}
+
+.TrainRides>.rideInfos>.ticketInformations>.infos>#bottomInfos>div>*{
+    flex: 1;
+}
+
+.TrainRides>.rideInfos>.ticketInformations>.bookTicket{
+    display: flex;
+    flex-direction: column;
+    gap: 1.6dvh;
+    justify-content: center;
+    align-items: center;
+}
+
+.TrainRides>.rideInfos>.ticketInformations>.bookTicket>div{
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    gap: 0.5dvw;
+}
+
+.TrainRides>.rideInfos>.ticketInformations>.bookTicket>div>*{
+    flex: 1;
+    text-align: center;
+}
+
+.TrainRides>.rideInfos>.ticketInformations>.bookTicket>div>#nb{
+    flex: 1;
+    text-align: center;
+    width: 50%;
+    outline: none;
+    border: none;
+}
+
+.rideInfos>.submit{
+    position: absolute;
+    width: auto;
+    right: 4dvw;
+}
+
+.rideInfos>.submit>input{
+    font-size: calc(10px + min(0.5dvh, 0.5dvw));
+    padding: 1dvh 2dvw;
+    border: none;
+    border-radius: 10px;
+    background: var(--link-color);
+    color: white;
+    cursor: pointer;
+}

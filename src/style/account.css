@@ -1,0 +1,252 @@
+.accountforms{
+    display: flex;
+    z-index: 40;
+    height: 60dvh;
+    width: 90dvw;
+    justify-content: center;
+    gap: 2dvw;
+    flex-direction: row;
+}
+
+/* Login / Sign in form */
+
+.accountforms>form{
+    flex: 1;
+    height: 100%;
+    padding: 2dvh 5dvw;
+    display: flex;
+    flex-direction: column;
+}
+
+.accountforms>form>*{
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    gap: 2dvh;
+    justify-content: center;
+    align-items: center;
+}
+
+.accountforms>form>.inputs{
+    flex: 5;
+    gap: 1dvh;
+}
+
+.accountforms>form>.inputs>div{
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    max-height: 62px;
+    border: 0.2px solid black;
+    background: white;
+    padding: 0 2dvw;
+    border-radius: 10px;
+    font-size: calc(10px + min(0.6dvh, 0.6dvw));
+    gap: 2dvw;
+}
+
+.accountforms>form>.inputs>div>label{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    flex: 1;
+}
+
+.accountforms>form>.inputs>div>input{
+    flex: 2;
+    outline: none;
+    border: none;
+    font-size: calc(12px + min(0.7dvh, 0.7dvw));
+    padding: 0 1dvw;
+}
+
+.accountforms>form>.inputs>div>input:focus{
+    background: none;
+}
+
+.accountforms>form>.submit{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.accountforms>form>.mdp_oublie{
+    max-height: 45px;
+}
+
+.accountforms>form>.mdp_oublie>a{
+    color: var(--link-color);
+}
+
+
+.accountforms>form>.submit>input{
+    font-size: calc(12px + min(0.8dvh, 0.8dvw));
+    padding: 1dvh 2dvw;
+    border: none;
+    border-radius: 10px;
+    background: var(--link-color);
+    color: white;
+    cursor: pointer;
+}
+
+.accountforms>form>.submit>input:hover{
+    opacity: 0.8;
+}
+
+/* Account page */
+.account{
+    display: flex;
+    z-index: 40;
+    height: 65dvh;
+    width: 100dvw;
+    justify-content: center;
+    align-items: center;
+    gap: 2dvw;
+    flex-direction: column;
+}
+
+.account>.account_infos{
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    height: 90%;
+    width: 90%;
+    clip-path: polygon(0% 0%, 0% 100%, 13% 100%, 13% 65%, 89% 65%, 89% 90%, 12% 90%, 13% 100%, 100% 100%, 100% 0%);
+    padding: 1dvh 5dvw;
+    padding-bottom: 25dvh;
+}
+
+.account>.account_infos>.accountlogo{
+    flex: 1;
+    border-radius: 100%;
+    height: 100%;
+    width: 100%;
+    padding: 4dvh 7dvw;
+    display: flex;
+    justify-content: center;
+}
+
+.account>.account_infos>.accountlogo>img{
+    flex: 1;
+    height: 100%;
+    width: auto;
+    border-radius: 100%;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+}
+
+.account>.account_infos>.infos{
+    flex: 3;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 2dvh 3dvw;
+}
+
+.account>.account_infos>.infos>section{
+    flex: 3;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: center;
+    padding: 2dvh 3dvw;
+}
+
+.account>.account_infos>.infos>section>div{
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+}
+
+.account>.account_infos>.infos>section>div>h1{
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    font-size: calc(15px + min(1.6dvh, 1.6dvw));
+}
+
+.account>.account_infos>.infos>section>div>h2{
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    font-size: calc(13px + min(1.4dvh, 1.4dvw));
+}
+
+.account>.account_infos>.infos>#modifMDP{
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.account>.account_infos>.infos>#modifMDP>a{
+    font-size: calc(15px + min(1.6dvh, 1.6dvw));
+    color: var(--link-color);
+    text-decoration: none;
+}
+
+
+.account>.balance{
+    position: absolute;
+    width: 60%;
+    bottom: 27dvh;
+    display: flex;
+    flex-direction: row;
+    height: 10dvh;
+    padding: 1dvh 2dvw;
+    gap: 3dvw;
+}
+
+.account>.balance>div{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    font-size: calc(14px + min(1.3dvh, 1.3dvw));
+}
+
+.account>.balance>#balance{
+    flex: 1;
+}
+
+.positif{
+    color: #093E01;
+}
+
+.negatif{
+    color: #3E0101;
+}
+
+.account>.balance>.rechargeAccount{
+    flex: 3;
+}
+
+.account>.balance>.rechargeAccount>a{
+    text-decoration: none;
+    color: var(--link-color);
+}
+
+.account>.deconnexion{
+    z-index: 999;
+    position: absolute;
+    right: 2dvw;
+    bottom: 15dvh;
+}
+
+.account>.deconnexion>input{
+    font-size: calc(12px + min(0.8dvh, 0.8dvw));
+    padding: 1dvh 2dvw;
+    border: none;
+    border-radius: 10px;
+    background: var(--link-color);
+    color: white;
+    cursor: pointer;
+}

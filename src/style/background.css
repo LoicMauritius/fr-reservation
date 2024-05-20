@@ -1,0 +1,90 @@
+.background{
+    height: 100dvh;
+    z-index: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    width: 100dvw;
+}
+
+.tree{
+    position: absolute;
+    bottom: 3dvh;
+    left: 100dvw;
+    z-index: 10;
+    transform: scale(0.6);
+}
+
+.effeilTower{
+    z-index: 1;
+    position: absolute;
+    bottom: 0;
+    left: 100dvw;
+    z-index: 1;
+    transform: scale(0.7);
+}
+
+.clouds{
+    z-index: 0;
+    position: absolute;
+    left: 100dvw;
+    transform: scale(0.5);
+}
+
+.underground{
+    z-index: 0;
+    position: absolute;
+    bottom: 0;
+    height: 15dvh;
+    width: 100dvw;
+    background: var(--underground-back);
+    border-top: 20px solid #00690A;
+    box-shadow: -10px 10px 30px 0px rgba(0,0,0,1) inset;
+    -webkit-box-shadow: -10px 10px 30px 0px rgba(0,0,0,1) inset;
+    -moz-box-shadow: -10px 10px 30px 0px rgba(0,0,0,1) inset;
+}
+
+.train{
+    position: absolute;
+    bottom: -2vh;
+    animation: move-train 2s;
+    left: -50dvw;
+    z-index: 50;
+    transform: scale(0.8);
+}
+
+@keyframes move-train {
+    from{
+        left: -100dvw;
+    }to{
+        left: -50dvw;
+    }
+}
+
+@keyframes tree-move {
+    from{
+        left: 100dvw;
+    }to{
+        left: -30dvw;
+    }
+}
+
+@keyframes EiffelTower-move {
+    from{
+        left: 100dvw;
+    }to{
+        left: -35dvw;
+    }
+}
+
+@keyframes cloud-move {
+    from{
+        left: 100dvw;
+    }to{
+        left: -20dvw;
+    }
+}

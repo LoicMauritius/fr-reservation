@@ -1,0 +1,31 @@
+main{
+    z-index: 40;
+    display: flex;
+    flex-direction: column;
+    height: 60dvh;
+    width: 60dvw;
+    padding: 5dvh 3dvw;
+}
+
+main>*{
+    flex: 1;
+}
+
+main>.welcome{
+    color: var(--title-color);
+    font-size: calc(30px + min(2dvh, 2dvw));
+    text-align: center;
+    margin-bottom: 2dvh;
+}
+
+main>.subtitle{
+    color: var(--title-color);
+    font-size: calc(18px + min(1.7dvh, 1.7dvw));
+}
+
+main>.description{
+    align-items: center;
+    flex: 3;
+    text-align: left;
+    font-size: calc(12px + min(1dvh, 1dvw));
+}

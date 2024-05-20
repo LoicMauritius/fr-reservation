@@ -1,0 +1,73 @@
+/* Choice of the main color for the elements of the website */
+:root{
+    --background-color: #FFF8F2;
+    --components-background-color: #FAE8D9;
+
+    --title-color: #002496;
+    --text-color: #000000;
+    --link-color: #0052B4;
+
+    --underground-back: #2D2D2D;
+}
+
+/* Global class */
+
+body .title {
+    color: var(--title-color);
+    font-size: calc(12px + min(1.5dvh, 1.5dvw));
+}
+
+body .layout{
+    background: var(--components-background-color);
+    border: 0.2 solid black;
+    box-shadow: 3px 4px 4px 0px rgba(0,0,0,0.25);
+    -webkit-box-shadow: 3px 4px 4px 0px rgba(0,0,0,0.25);
+    -moz-box-shadow: 3px 4px 4px 0px rgba(0,0,0,0.25);
+    border-radius: 20px;
+}
+
+body .glassmorphism{
+    background: rgba( 255, 248, 242, 0.3 );
+    box-shadow: 5px 5px 4px 0px rgba(0,0,0,0.3);
+    -webkit-box-shadow: 5px 5px 4px 0px rgba(0,0,0,0.3);
+    -moz-box-shadow: 5px 5px 4px 0px rgba(0,0,0,0.3);
+    backdrop-filter: blur( 3px );
+    -webkit-backdrop-filter: blur( 3px );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    border: 0.2px solid var(--background-color);
+}
+
+/* Start stylising my website ( the main parts such as <html> or <body> ) */
+
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html,body{
+    overflow: hidden;
+}
+
+html{
+    overflow-y: scroll;
+}
+html::-webkit-scrollbar{
+    width: 2px;
+}
+
+html::-webkit-scrollbar-thumb{
+    background: var(--title-color);
+}
+
+body{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: var(--background-color);
+    width: 100dvw;
+    height: 100dvh;
+    color: var(--text-color);
+}

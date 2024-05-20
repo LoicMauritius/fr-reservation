@@ -1,0 +1,140 @@
+header{
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 50;
+
+    display: flex;
+    flex-direction: row;
+    width: 100dvw;
+    height: 15dvh;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+header>*{
+    display: flex;
+    height: 100%;
+    flex: 1;
+}
+
+header a{
+    color: var(--text-color);
+    text-decoration: none;
+}
+
+/* ---------------------------------------------- For the logo ----------------------------------------------------- */
+
+header>.logo{
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1dvh 1dvw;
+    gap: 1dvh;
+}
+
+header>.logo>img{
+    height: 50%;
+    max-height: 80px;
+    max-width: 80px;
+    width: auto;
+}
+
+/* ---------------------------------------------- For the navigation bar ----------------------------------------------------- */
+
+header>.navigation{
+    flex: 6; /* Make the nav more bigger than the rest */
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-end;
+    height: 100%;
+    padding: 1dvh 5dvw;
+}
+
+header>.navigation>nav{
+    height: 23%;
+    width: 100%;
+    padding: 0 10%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    gap: 2dvw;
+}
+
+header>.navigation>nav>a{
+    flex: 1;
+    display: flex;
+    margin: 0.2dvh 0;
+    padding: 0.05dvh 1dvw;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+
+header>.navigation>nav>.active{
+    animation: background-popup 1s ease-in;
+    background: var(--background-color);
+    border-radius: 20px;
+    box-shadow: 3px 2px 4px 0px rgba(0,0,0,0.26) inset;
+    -webkit-box-shadow: 3px 2px 4px 0px rgba(0,0,0,0.26) inset;
+    -moz-box-shadow: 3px 2px 4px 0px rgba(0,0,0,0.26) inset;
+}
+
+@keyframes background-popup {
+    from{
+        background: var(--components-background-color);
+        box-shadow: none;
+        -webkit-box-shadow: none;
+        -moz-box-shadow: none;
+    }
+    40%{
+        background: var(--background-color);
+        box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.10) inset;
+        -webkit-box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.10) inset;
+        -moz-box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.10) inset;
+    }
+    60%{
+        background: var(--background-color);
+        box-shadow: 3px 2px 1px 0px rgba(0,0,0,0.26) inset;
+        -webkit-box-shadow: 3px 2px 1px 0px rgba(0,0,0,0.26) inset;
+        -moz-box-shadow: 3px 2px 1px 0px rgba(0,0,0,0.26) inset;
+    }
+    to{
+        background: var(--background-color);
+        box-shadow: 3px 2px 4px 0px rgba(0,0,0,0.26) inset;
+        -webkit-box-shadow: 3px 2px 4px 0px rgba(0,0,0,0.26) inset;
+        -moz-box-shadow: 3px 2px 4px 0px rgba(0,0,0,0.26) inset;
+    }
+}
+
+/* ---------------------------------------------- For the account ----------------------------------------------------- */
+
+header>.compte{
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1dvh 1dvw;
+}
+
+header>.compte>a{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1dvh;
+    padding: 1dvh 1dvw;
+}
+
+header>.compte>a>img{
+    height: 50%;
+    max-height: 80px;
+    max-width: 80px;
+    width: auto;
+}
+
+header>.compte>a>h2{
+    font-size: calc(10px + min(0.5dvh, 0.5dvw));
+    text-align: center;
+}
