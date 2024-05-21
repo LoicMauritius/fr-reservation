@@ -10,8 +10,11 @@ import Logo from '@/img/header/logo.png';
 import Fleche from '@/img/utils/fleche.png';
 import Swipe from '@/img/utils/swipe.png';
 
+interface TrainRidesProps{
+    data: Train[]
+}
 
-function TrainRides({data}:{data: Train[]}) {
+function TrainRides({data} : TrainRidesProps) {
     const { user } = useUser();
 
     function calculatePrice(price:number,nbPersonnes:number):number{
@@ -24,7 +27,7 @@ function TrainRides({data}:{data: Train[]}) {
                 <>
                     {data.map((TrainRide: Train, index: number) => (
                         <>
-                            <form action={""} key={`Train - ${TrainRide.id_train} ${index}`} className='rideInfos'>
+                            <div key={`Train - ${TrainRide.id_train} ${index}`} className='rideInfos'>
                                 <div className='ticketHeader'>
                                     <div id='logo'>
                                         <Image src={Logo} alt='logo' />
@@ -81,7 +84,7 @@ function TrainRides({data}:{data: Train[]}) {
                                 <div className="submit">
                                     <input type="submit" value="Réserver" />
                                 </div>
-                            </form>
+                            </div>
                         </>
                     ))}
                 </>}
@@ -91,10 +94,16 @@ function TrainRides({data}:{data: Train[]}) {
 
 export default function Reservation() {
 
-    const [data, setData] = useState({});
+    /* Const for fetching datas */
+    const [data,setData] = useState<Train[]>([]);
     const [filteredData, setFilteredData] = useState<Train[]>([]);
-    const [departurestations, setdeparturestations] = useState<String[]>([]);
-    const [arrivalstations, setarrivalstations] = useState<String[]>([]);
+    const [trainRoutes, setTrainRoutes] = useState<String[][]>([]);
+
+    /* Const for filters */
+    const [departStation, setDepartStation] = useState<String | null>(null);
+    const [arrivalStation, setArrivalStation] = useState<String | null>(null);
+    const [dateRide, setDateRide] = useState<Date | null>(null);
+    const [dateReturn, setDateReturn] = useState<Date | null>(null);
 
     useEffect(() => {
         async function fetchData() {
@@ -104,11 +113,8 @@ export default function Reservation() {
                     setData(TrainRide);
                     setFilteredData(TrainRide);
 
-                    const newdepartureStations =  TrainRide.map((train) => train.gare_depart).filter((departureStation, index, self) => index === self.indexOf(departureStation));
-                    setdeparturestations(newdepartureStations);
-
-                    const newarrivalStations =  TrainRide.map((train) => train.gare_arrive).filter((arrivalStation, index, self) => index === self.indexOf(arrivalStation));;
-                    setarrivalstations(newarrivalStations);
+                    const newTrainRoutes = TrainRide.map((train) => [train.gare_depart, train.gare_arrive]);
+                    setTrainRoutes(newTrainRoutes);
                 }
     
             } catch (error) {
@@ -119,43 +125,31 @@ export default function Reservation() {
         fetchData();
     }, []);
 
-    async function submitdata(data: FormData) {
-        const gare_depart = data.get('gare_depart') as string;
-        const gare_arrive = data.get('gare_arrive') as string;
-        const aller = data.get('aller') as string;
-        const retour = data.get('retour') as string;
-
-        if(gare_depart && gare_arrive && aller){
-            const newFilteredData = filteredData.filter((TrainRide: Train) => {
-                const allerDate = new Date(aller);
-                const retourDate = new Date(retour);
-                return (
-                    TrainRide.gare_depart === gare_depart &&
-                    TrainRide.gare_arrive === gare_arrive &&
-                    allerDate.getTime() <= TrainRide.date_depart.getTime() &&
-                    allerDate.getTime() >= TrainRide.date_arrive.getTime() &&
-                    (retourDate.getTime() <= TrainRide.date_depart.getTime() && retourDate.getTime() >= TrainRide.date_arrive.getTime()) || !retour
-                );
-            });
-            
-            setFilteredData(newFilteredData);
-        }
-        
-    }
+    useEffect(() => {
+        //Filter datas
+        setFilteredData(data.filter(trainRide =>
+            (!departStation || trainRide.gare_depart === departStation)
+            && (!arrivalStation || trainRide.gare_arrive === arrivalStation)
+            && (!dateRide || trainRide.date_depart >= dateRide)
+            && (!dateReturn || trainRide.date_depart <= dateReturn) 
+        ));
+    },[departStation,arrivalStation,dateRide,dateReturn]);
 
     return (
         <>
-            <form action={submitdata} className="filter">
+            <form className="filter">
                 <div className="choice">
                     <section className="gares">
                         <div>
                             <label htmlFor="gare_depart">De</label>
-                            <select name="gare_depart" id="gare_depart">
+                            <select onChange={(event) => setDepartStation(event.target.value)} name="gare_depart" id="gare_depart">
                                 <option value=''></option>
-                                { departurestations &&  
-                                    departurestations.map((departureStation) =>  
+                                { trainRoutes &&  
+                                    trainRoutes.filter(([departureStation,], index, self) =>
+                                        index === self.findIndex(([dep,]) => dep === departureStation)
+                                    ).map(([departureStation]) =>
                                         <>
-                                            <option value={departureStation.toString()}>{departureStation}</option>
+                                          <option value={departureStation.toString()}>{departureStation}</option>
                                         </>
                                     )
                                 }
@@ -163,12 +157,14 @@ export default function Reservation() {
                         </div>
                         <div>
                             <label htmlFor="gare_arrive">Vers</label>
-                            <select name="gare_arrive" id="gare_depart">
+                            <select onChange={(event) => setArrivalStation(event.target.value)} name="gare_arrive" id="gare_depart">
                                 <option value=''></option>
-                                { arrivalstations &&  
-                                    arrivalstations.map((departureStation) =>  
+                                { trainRoutes &&  
+                                    trainRoutes.filter(([,arrivalStation], index, self) =>
+                                        index === self.findIndex(([,arriv]) => arriv === arrivalStation)
+                                    ).map(([,arrivalStation]) =>
                                         <>
-                                            <option value={departureStation.toString()}>{departureStation}</option>
+                                          <option value={arrivalStation.toString()}>{arrivalStation}</option>
                                         </>
                                     )
                                 }
@@ -178,23 +174,25 @@ export default function Reservation() {
                     <section className="dates">
                         <div>
                             <label htmlFor="aller">Aller</label>
-                            <input type="date" name="aller" id="aller" />
+                            <input onChange={(event) => setDateRide(event.target.valueAsDate)} type="date" name="aller" id="aller" />
                         </div>
                         <div>
                             <label htmlFor="retour">Retour</label>
-                            <input type="datetime" name="retour" id="retour" />
+                            <input onChange={(event) => setDateReturn(event.target.valueAsDate)} type="date" name="retour" id="retour" />
                         </div>
                     </section>
-                </div>
-
-                <div className="submit">
-                    <input type="submit" value="Filtrer" />
                 </div>
             </form>
             <section className='swipe'>
                 <Image src={Swipe} alt='swipe'/>
             </section>
-            {filteredData && Array.isArray(filteredData) && filteredData.length > 0 && <TrainRides data={filteredData}/>}
+            {(filteredData && Array.isArray(filteredData) && filteredData.length > 0) ? 
+                <TrainRides data={filteredData} />
+                :
+                <section className='TrainRides'>
+                    <h1 className={'error title ' + bebasNeue.className}>Pas de tickets disponible</h1>
+                </section>
+            }
 
         </>
     );

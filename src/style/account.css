@@ -211,6 +211,7 @@
     justify-content: center;
     align-items: center;
     font-size: calc(14px + min(1.3dvh, 1.3dvw));
+    border-radius: 2px !important;
 }
 
 .account>.balance>#balance{
@@ -246,7 +247,7 @@
     padding: 1dvh 2dvw;
     border: none;
     border-radius: 10px;
-    background: var(--link-color);
+    background: rgb(221, 48, 48);
     color: white;
     cursor: pointer;
 }

@@ -4,7 +4,7 @@ import { bebasNeue } from '@/style/font';
 
 export default function Home() {
     return (
-        <main className="glassmorphism">
+        <main className="layout">
             <h1 className={`welcome ${bebasNeue.className}`}>Bienvenue sur FR-reservation !!</h1>
             <h2 className={`subtitle ${bebasNeue.className}`}> Qui sommes-nous ?</h2>
             <p className="description">

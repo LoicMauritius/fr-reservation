@@ -27,6 +27,7 @@
     align-items: center;
     flex-direction: column;
     flex: 1;
+    padding: 8dvh 0;
 }
 
 .reservation>.filter>.choice{
@@ -41,6 +42,7 @@
     align-items: center;
     flex-direction: column;
     width: 100%;
+    gap: 0.5dvh;
 }
 
 .reservation>.filter>.choice>.gares>*{
@@ -81,6 +83,7 @@
     align-items: center;
     flex-direction: column;
     width: 100%;
+    gap: 0.5dvh;
 }
 
 .reservation>.filter>.choice>.dates>*{
@@ -122,6 +125,7 @@
     height: auto;
     margin: auto;
     animation: swipe-animate 2s infinite linear;
+    filter: invert(100%);
 }
 
 @keyframes swipe-animate{
@@ -318,4 +322,9 @@
     background: var(--link-color);
     color: white;
     cursor: pointer;
+}
+
+.TrainRides>.error{
+    text-align: center;
+    font-size: calc(15px + min(2dvh,2dvw));
 }

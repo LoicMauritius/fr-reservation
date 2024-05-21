@@ -50,7 +50,7 @@
 
 .train{
     position: absolute;
-    bottom: -2vh;
+    bottom: -1.2vh;
     animation: move-train 2s;
     left: -50dvw;
     z-index: 50;

@@ -1,9 +1,10 @@
 .notfound{
     display: flex;
     flex-direction: column;
-    height: 70dvh;
+    height: 60dvh;
     width: 60dvw;
     padding: 5dvh 3dvw;
+    z-index: 999;
 }
 
 .notfound>*{
