@@ -25,10 +25,7 @@ export default function FormConnexion() {
     }
 
     return (
-        <form action={async (formData) => {
-            'use server';
-
-        }}>
+        <form>
             <h2>Connexion&ensp;<FontAwesomeIcon icon={faUser} className="rotate"/></h2>
             <input type="email" name="email" placeholder="Adresse mail"/>
             <input type="password" name="password" placeholder="Mot de passe"/>
