@@ -1,58 +1,74 @@
-"use client";
+'use client';
 
 import { useUser } from "@/context/UserProvider";
-import Link from "next/link";
-import Image from "next/image";
-import IMGReturn from '@/img/utils/croix.png';
+import { rechargeUserAccount } from "@/db/users/UserActions";
 import { bebasNeue } from "@/style/font";
+import { useRouter } from "next/navigation";
 
-const Account = () => {
+const RechargeCompte = () => {
 
     const { user, setUser } = useUser();
+    const router = useRouter();
+
+    async function submitdata(data:FormData){
+
+        const newBalance = await rechargeUserAccount(data);
+
+        if(newBalance){
+            setUser((prevUser) => prevUser ? { ...prevUser, balance: newBalance } : prevUser );
+            console.log('Ajout de ' + newBalance)
+            router.push('/compte')
+        }else{
+            console.log('Pb')
+        }
+    }
 
     return(
         <>
-            { user &&
-                <>
-                    <section className="rechargeAccount">
-                        <div id="overlayRecharge layout">
-                            <Link className="return" href="/compte">
-                                <Image src={IMGReturn} alt="return" />
-                            </Link>
+            <form action={submitdata} className="rechargeForm glassmorphism">
+                <div>
+                    <section className="inputs">
+                        <h1 className={bebasNeue.className + " title"}>Somme à ajouter</h1>
+                        <div>
+                            <h2> + 5 €</h2>
+                            <input type="radio" name="amount" id="add" value={5}/>
+                        </div>
+                        <div>
+                            <h2> + 10 €</h2>
+                            <input type="radio" name="amount" id="add" value={10}/>
+                        </div>
+                        <div>
+                            <h2> + 20 €</h2>
+                            <input type="radio" name="amount" id="add" value={20}/>
+                        </div>
+                        <div>
+                            <h2> + 50 €</h2>
+                            <input type="radio" name="amount" id="add" value={50}/>
+                        </div>
 
-                            <form action={""} className="mainrecharge">
-                                <div className="recharge">
-                                    <h1 className={bebasNeue.className + " title"}>De combien voulez-vous recharger votre abonnement ?</h1>
-                                    <div className="amounts">
-                                        <div>
-                                            <input type="radio" name="amount" id="recharge" value={5}/>
-                                            <h2>5 €</h2>
-                                        </div>
-                                        <div>
-                                            <input type="radio" name="amount" id="recharge" value={10}/>
-                                            <h2>10 €</h2>
-                                        </div>
-                                        <div>
-                                            <input type="radio" name="amount" id="recharge" value={20}/>
-                                            <h2>20 €</h2>
-                                        </div>
-                                        <div>
-                                            <input type="radio" name="amount" id="recharge" value={50}/>
-                                            <h2>50 €</h2>
-                                        </div>
-                                    </div>
-                                </div>
+                        <input type="hidden" name="balance" value={user? user.balance : 0}/>
+                        <input type="hidden" name="username" value={user? user.name.first_name + '.' + user.name.last_name : ''}/>
+                    </section>
 
-                                <div className="submit">
-                                    <input type="submit" value="Réserver" />
-                                </div>
-                            </form>
+                    <section className="Bankcard">
+                        <h1 className={bebasNeue.className + " title"}>Informations de carte banquaire</h1>
+                        <input type="text" name="numCard" id="num" placeholder="xxxx-xxxx-xxxx-xxxx"/>
+                        <input type="text" name="nameCardHolder" id="name" placeholder="nom.prenom..."/>
+                        <div>
+                            <input type="text" name="expireCard" id="name" placeholder="date d'expiration"/>
+                            <input type="text" name="CVCCard" id="name" placeholder="CVC..."/>
                         </div>
                     </section>
-                </>
-            }
+                </div>
+                
+
+                <div className="submit">
+                    <input type="submit" value="Ajouter" />
+                </div>
+
+            </form>
         </>
-    );
+    )
 }
 
-export default Account;
+export default RechargeCompte;

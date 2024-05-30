@@ -27,7 +27,7 @@ function TrainRides({data} : TrainRidesProps) {
                 <>
                     {data.map((TrainRide: Train, index: number) => (
                         <>
-                            <div key={`Train - ${TrainRide.id_train} ${index}`} className='rideInfos'>
+                            <form action={"" /* Faire la réservation de train */} key={`Train - ${TrainRide.id_train} ${index}`} className='rideInfos'>
                                 <div className='ticketHeader'>
                                     <div id='logo'>
                                         <Image src={Logo} alt='logo' />
@@ -84,7 +84,7 @@ function TrainRides({data} : TrainRidesProps) {
                                 <div className="submit">
                                     <input type="submit" value="Réserver" />
                                 </div>
-                            </div>
+                            </form>
                         </>
                     ))}
                 </>}
@@ -127,11 +127,12 @@ export default function Reservation() {
 
     useEffect(() => {
         //Filter datas
+        console.log("filtrage: du ", dateRide," au ",dateReturn)
         setFilteredData(data.filter(trainRide =>
             (!departStation || trainRide.gare_depart === departStation)
             && (!arrivalStation || trainRide.gare_arrive === arrivalStation)
-            && (!dateRide || trainRide.date_depart >= dateRide)
-            && (!dateReturn || trainRide.date_depart <= dateReturn) 
+            && (!dateRide || dateRide <= new Date(trainRide.date_depart))
+            && (!dateReturn || dateReturn >= new Date(trainRide.date_arrive))
         ));
     },[departStation,arrivalStation,dateRide,dateReturn]);
 
@@ -186,11 +187,11 @@ export default function Reservation() {
             <section className='swipe'>
                 <Image src={Swipe} alt='swipe'/>
             </section>
-            {(filteredData && Array.isArray(filteredData) && filteredData.length > 0) ? 
-                <TrainRides data={filteredData} />
+            {filteredData && filteredData.length != 0 ?
+                Array.isArray(filteredData) && filteredData.length > 0 && <TrainRides data={filteredData} />
                 :
                 <section className='TrainRides'>
-                    <h1 className={'error title ' + bebasNeue.className}>Pas de tickets disponible</h1>
+                    <h1 className={'error ' + bebasNeue.className}>Pas de tickets disponible</h1>
                 </section>
             }
 

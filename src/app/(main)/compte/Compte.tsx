@@ -52,9 +52,9 @@ const Compte = ({ user }:{ user:UserType }) => {
             <section className="balance">
                 <div className="layout" id="balance">
                     { user.balance > 0 ? 
-                        <h1 className={bebasNeue.className + ' positif'}>+ {user.balance}</h1> 
+                        <h1 className={bebasNeue.className + ' positif'}>+ {user.balance} €</h1> 
                         : 
-                        <h1 className={bebasNeue.className + ' negatif'}>- {user.balance}</h1>
+                        <h1 className={bebasNeue.className + ' negatif'}>- {user.balance} €</h1>
                     }
                 </div>
                 <div className="layout rechargeAccount">
