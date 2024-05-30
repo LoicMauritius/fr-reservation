@@ -1,16 +1,23 @@
-import { Schema, model, models} from "mongoose";
+import { Schema, model, models, Document } from "mongoose";
 
-export const Option = {
-    id_Option: Number,
-    wording: String,
-    price: Number
+export interface OptionType {
+    id_Option: number;
+    wording: string;
+    price: number;
 }
-const OptionSchema = new Schema(Option);
+
+export interface Option extends OptionType, Document {}
+
+const OptionSchema = new Schema<Option>({
+    id_Option: { type: Number, required: true, unique: true },
+    wording: { type: String, required: true },
+    price: { type: Number, required: true }
+});
 
 export default function getOptionModel() {
     if (models.Option) {
         return models.Option;
     }
-  
-    return model('Option', OptionSchema);
+
+    return model<Option>('Option', OptionSchema);
 }

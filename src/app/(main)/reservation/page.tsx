@@ -1,6 +1,6 @@
 "use client";
 
-import { allTrainRide } from '@/db/reservations/ReservationActions';
+import { allTrainRide, reserveTrain } from '@/db/reservations/ReservationActions';
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { bebasNeue } from '@/style/font';
@@ -16,9 +16,13 @@ interface TrainRidesProps{
 
 function TrainRides({data} : TrainRidesProps) {
     const { user } = useUser();
+    const [persons, setPersons] = useState(0);
 
-    function calculatePrice(price:number,nbPersonnes:number):number{
-        return nbPersonnes*price;
+    async function handleSubmit(data:FormData){
+        if(persons>0){
+            const newReservation = await reserveTrain(data);
+            console.log(newReservation)
+        }
     }
 
     return (
@@ -27,11 +31,12 @@ function TrainRides({data} : TrainRidesProps) {
                 <>
                     {data.map((TrainRide: Train, index: number) => (
                         <>
-                            <form action={"" /* Faire la réservation de train */} key={`Train - ${TrainRide.id_train} ${index}`} className='rideInfos'>
+                            <form action={handleSubmit} key={`Train - ${TrainRide.id_train} ${index}`} className='rideInfos'>
 
                                 <input type="hidden" name="id_User" value={user?.id_User}/>
                                 <input type="hidden" name="id_train" value={TrainRide.id_train.toFixed(0)}/>
                                 <input type="hidden" name="price" value={TrainRide.price}/>
+                                <input type="hidden" name="persons" value={persons}/>
 
                                 <div className='ticketHeader'>
                                     <div id='logo'>
@@ -77,7 +82,7 @@ function TrainRides({data} : TrainRidesProps) {
                                         </div>
                                         <div>
                                             <h2 className={bebasNeue.className}>Nombre de personnes</h2>
-                                            <input onChange={(event) => calculatePrice(TrainRide.price,event.target.valueAsNumber)} placeholder='Nombre de personnes...' type="number" name="nbPersons" id="nb" required />
+                                            <input value={persons} onChange={(e) => setPersons(parseInt(e.target.value))} placeholder='Nombre de personnes...' type="number" name="nbPersons" id="nb" required />
                                         </div>
                                         <div>
                                             <h2 className={bebasNeue.className}>Prix à l'unité</h2>

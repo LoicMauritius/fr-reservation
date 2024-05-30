@@ -88,7 +88,7 @@ export const inscriptionUser = async (data: FormData) => {
                         email: email,
                         age: age,
                         date_signup: new Date(),
-                        role: "Commerçant",
+                        role: "utilisateur",
                         balance: 0,
                         treasury: [],
                     });
