@@ -1,20 +1,29 @@
 import { Schema, model, models } from "mongoose";
 
-export const Reservation = {
-    id_Reservation: Number,
-    id_train: Number,
-    id_User: Number,
-    idOptions: [{Number}],
-    total_price: Number,
-    payement_check: Boolean
+export interface ReservationType {
+    id_Reservation: number;
+    id_train: number;
+    id_User: string;
+    idOptions: number[];
+    total_price: number;
+    payement_check: boolean;
 }
 
-const ReservationSchema = new Schema(Reservation);
+export interface Reservation extends ReservationType, Document {}
+
+const ReservationSchema = new Schema<Reservation>({
+    id_Reservation: { type: Number, required: true, unique: true },
+    id_train: { type: Number, required: true },
+    id_User: { type: String, required: true },
+    idOptions: [{ type: Number, required: true }],
+    total_price: { type: Number, required: true },
+    payement_check: { type: Boolean, required: true }
+});
 
 export default function getReservationModel() {
     if (models.Reservation) {
         return models.Reservation;
     }
-  
-    return model('Reservation', ReservationSchema);
+
+    return model<Reservation>('Reservation', ReservationSchema);
 }

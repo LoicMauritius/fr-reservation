@@ -28,6 +28,11 @@ function TrainRides({data} : TrainRidesProps) {
                     {data.map((TrainRide: Train, index: number) => (
                         <>
                             <form action={"" /* Faire la réservation de train */} key={`Train - ${TrainRide.id_train} ${index}`} className='rideInfos'>
+
+                                <input type="hidden" name="id_User" value={user?.id_User}/>
+                                <input type="hidden" name="id_train" value={TrainRide.id_train.toFixed(0)}/>
+                                <input type="hidden" name="price" value={TrainRide.price}/>
+
                                 <div className='ticketHeader'>
                                     <div id='logo'>
                                         <Image src={Logo} alt='logo' />
@@ -72,7 +77,7 @@ function TrainRides({data} : TrainRidesProps) {
                                         </div>
                                         <div>
                                             <h2 className={bebasNeue.className}>Nombre de personnes</h2>
-                                            <input onChange={(event) => calculatePrice(TrainRide.price,event.target.valueAsNumber)} placeholder='Nombre de personnes...' type="number" name="nbPersons" id="nb" />
+                                            <input onChange={(event) => calculatePrice(TrainRide.price,event.target.valueAsNumber)} placeholder='Nombre de personnes...' type="number" name="nbPersons" id="nb" required />
                                         </div>
                                         <div>
                                             <h2 className={bebasNeue.className}>Prix à l'unité</h2>
