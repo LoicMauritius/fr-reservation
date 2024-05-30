@@ -2,7 +2,7 @@ import { Schema, model, models } from "mongoose";
 
 //Create an interface to use it in front and back parts of the application
 export interface UserType {
-    id_User: number;
+    id_User: string;
     name: {
         first_name: string;
         last_name: string;
@@ -22,7 +22,7 @@ export interface UserType {
 export interface User extends UserType, Document {}
 
 const UserSchema = new Schema<User>({
-    id_User: { type: Number, required: true, unique: true },
+    id_User: { type: String, required: true, unique: true },
     name: {
         first_name: { type: String, required: true },
         last_name: { type: String, required: true },
