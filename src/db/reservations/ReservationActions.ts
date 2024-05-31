@@ -146,3 +146,23 @@ export const getTrainbyReservations = async (id_Train: number) => {
         console.log(err);
     }
 };
+
+export const deleteReservations = async (id_Reservation: string) =>{
+
+    try{
+        const ReservationModel = getReservationModel() as Model<Reservation>;
+
+        //Récupère les reservatiobs de l'utilisateur
+        const reservations = await ReservationModel.findOneAndDelete({
+            id_Reservation: id_Reservation
+        }).lean();
+        console.log(reservations)
+
+        return true;
+
+    }catch(err){
+        console.error(err)
+        return null;
+    }
+    
+}

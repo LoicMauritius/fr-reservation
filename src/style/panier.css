@@ -1,0 +1,214 @@
+.panier{
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Reservation Tickets*/
+.TrainRidesPanier{
+    position: relative;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 2dvh;
+    padding: 5dvh 5dvw;
+    background: var(--components-background-color);
+}
+
+.TrainRidesPanier>.rideInfos{
+    display: flex;
+    flex-direction: column;
+    background: white;
+    color: var(--text-color);
+    font-size: calc(9px + min(0.4dvh,0.4dvw));
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    border: 1px solid black;
+    border-radius: 20px;
+    padding: 3dvh 2dvw;
+}
+
+.TrainRidesPanier>.rideInfos>.ticketHeader{
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 0 5dvw;
+}
+
+.TrainRidesPanier>.rideInfos>.ticketHeader>#logo{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.TrainRidesPanier>.rideInfos>.ticketHeader>#logo>img{
+    max-width: 30px;
+    height: auto;
+}
+
+.TrainRidesPanier>.rideInfos>.ticketHeader>#stations{
+    flex: 4;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    border: 1px solid black;
+    padding: 0.5dvh 10dvw;
+}
+
+.TrainRidesPanier>.rideInfos>.ticketHeader>#stations>img{
+    width: auto;
+    max-height: 3dvh;
+}
+
+.TrainRidesPanier>.rideInfos>.ticketInformations{
+    flex: 3;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 1dvh 4dvw;
+    gap: 1dvw;
+}
+
+.TrainRidesPanier>.rideInfos>.ticketInformations>*{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    height: 100%;
+    padding: 2dvh 3dvw;
+    border: 1px solid black;
+}
+
+.TrainRidesPanier>.rideInfos>.ticketInformations>.infos{
+    flex: 3;
+    gap: 2dvh;
+    height: 100%;
+}
+
+.TrainRidesPanier>.rideInfos>.ticketInformations>.infos>#topInfos{
+    flex: 3;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 0.5dvh;
+}
+
+.TrainRidesPanier>.rideInfos>.ticketInformations>.infos>#topInfos>div{
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.TrainRidesPanier>.rideInfos>.ticketInformations>.infos>#topInfos>div>*{
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.TrainRidesPanier>.rideInfos>.ticketInformations>.infos>#bottomInfos{
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.TrainRidesPanier>.rideInfos>.ticketInformations>.infos>#bottomInfos>*{
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.TrainRidesPanier>.rideInfos>.ticketInformations>.infos>#bottomInfos>div{
+    flex: 2;
+}
+
+.TrainRidesPanier>.rideInfos>.ticketInformations>.infos>#bottomInfos>div>*{
+    flex: 1;
+}
+
+.TrainRidesPanier>.rideInfos>.ticketInformations>.bookTicket{
+    display: flex;
+    flex-direction: column;
+    gap: 1.6dvh;
+    justify-content: center;
+    align-items: center;
+}
+
+.TrainRidesPanier>.rideInfos>.ticketInformations>.bookTicket>div{
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    gap: 0.5dvw;
+}
+
+.TrainRidesPanier>.rideInfos>.ticketInformations>.bookTicket>div>*{
+    flex: 1;
+    text-align: center;
+}
+
+.TrainRidesPanier>.rideInfos>.ticketInformations>.bookTicket>div>#nb{
+    flex: 1;
+    text-align: center;
+    width: 50%;
+    outline: none;
+    border: none;
+}
+
+.rideInfos>.submit{
+    position: absolute;
+    width: auto;
+    right: 4dvw;
+}
+
+.rideInfos>.submit>input{
+    font-size: calc(10px + min(0.5dvh, 0.5dvw));
+    padding: 1dvh 2dvw;
+    border: none;
+    border-radius: 10px;
+    background: var(--link-color);
+    color: white;
+    cursor: pointer;
+}
+
+.TrainRidesPanier>.error{
+    text-align: center;
+    font-size: calc(15px + min(2dvh,2dvw));
+}
+
+.payement{
+    z-index: 80;
+}
+
+.payement>input{
+    font-size: calc(10px + min(0.5dvh, 0.5dvw));
+    padding: 1dvh 2dvw;
+    border: none;
+    border-radius: 10px;
+    background: var(--link-color);
+    color: white;
+    cursor: pointer;
+}
+
+.valide{
+    background: rgb(199, 255, 199);
+}

@@ -2,7 +2,7 @@
 
 import { useUser } from '@/context/UserProvider';
 import { TrainType } from '@/db/model/Train';
-import { addOption, getReservations, getTrainbyReservations } from '@/db/reservations/ReservationActions';
+import { addOption, deleteReservations, getReservations, getTrainbyReservations } from '@/db/reservations/ReservationActions';
 import Image from 'next/image';
 import Logo from '@/img/header/logo.png';
 import Fleche from '@/img/utils/fleche.png';
@@ -10,6 +10,7 @@ import { bebasNeue } from '@/style/font';
 import { useEffect, useState } from 'react';
 import { Reservation, ReservationType } from '@/db/model/Reservation';
 import '@/style/reservation.css';
+import '@/style/panier.css';
 
 interface TrainRidesProps{
     reservations: ReservationType[],
@@ -18,24 +19,24 @@ interface TrainRidesProps{
 
 function TrainRides({reservations,data} : TrainRidesProps) {
     const { user } = useUser();
-    const [persons, setPersons] = useState(0);
 
     async function handleSubmit(data:FormData){
         //AddOptions or delete
+        await deleteReservations(data.get('id_Reservation') as string);
     }
 
     return (
-        <section className='TrainRides'>
+        <section className='TrainRidesPanier layout'>
             {   //Display all the Train rides on the database
                 <>
+                    {data.length == 0 && <><h1 className={bebasNeue.className}>No data</h1></>}
                     {data.map((TrainRide: TrainType, index: number) => (
                         <>
-                            <form action={handleSubmit} key={`Train - ${TrainRide.id_train} ${index}`} className='rideInfos'>
+                            <form action={handleSubmit} key={`Train - ${TrainRide.id_train} ${index}`} className={reservations[index].payement_check ? 'rideInfos .valide' : 'rideInfos'}>
 
-                                <input type="hidden" name="id_User" value={user?.id_User}/>
+                                <input type="hidden" name="id_Reservation" value={reservations[index].id_Reservation}/>
                                 <input type="hidden" name="id_train" value={TrainRide.id_train.toFixed(0)}/>
-                                <input type="hidden" name="price" value={TrainRide.price}/>
-                                <input type="hidden" name="persons" value={persons}/>
+                                <input type="hidden" name="price" value={reservations[index].total_price}/>
 
                                 <div className='ticketHeader'>
                                     <div id='logo'>
@@ -81,7 +82,7 @@ function TrainRides({reservations,data} : TrainRidesProps) {
                                         </div>
                                         <div>
                                             <h2 className={bebasNeue.className}>Nombre de personnes</h2>
-                                            <input value={persons} onChange={(e) => setPersons(parseInt(e.target.value))} placeholder='Nombre de personnes...' type="number" name="nbPersons" id="nb" required />
+                                            <p>{}</p>
                                         </div>
                                         <div>
                                             <h2 className={bebasNeue.className}>Prix à l'unité</h2>
@@ -152,8 +153,11 @@ export default function Panier(){
 
     return(
         <>
-            <form action={""}>
+            <form className='panier' action={""}>
                 { trains ? <TrainRides reservations={reservations} data={trains}/> : <></>}
+                <div className="payement">
+                    <input type="submit" value="Payer" />
+                </div>
             </form>
         </>
     )
