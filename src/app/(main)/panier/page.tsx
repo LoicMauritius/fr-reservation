@@ -20,10 +20,16 @@ interface TrainRidesProps{
 function TrainRides({reservations,data} : TrainRidesProps) {
     const { user } = useUser();
 
-    async function handleSubmit(data:FormData){
-        //AddOptions or delete
-        await deleteReservations(data.get('id_Reservation') as string);
-    }
+    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+      
+        // Récupère les données du formulaire
+        const formData = new FormData(event.currentTarget);
+      
+        // Supprime la réservation
+        const deleteR = await deleteReservations(formData.get('id_Reservation') as string);
+        console.log(deleteR);
+    };
 
     return (
         <section className='TrainRidesPanier layout'>
@@ -32,7 +38,7 @@ function TrainRides({reservations,data} : TrainRidesProps) {
                     {data.length == 0 && <><h1 className={bebasNeue.className}>No data</h1></>}
                     {data.map((TrainRide: TrainType, index: number) => (
                         <>
-                            <form action={handleSubmit} key={`Train - ${TrainRide.id_train} ${index}`} className={reservations[index].payement_check ? 'rideInfos .valide' : 'rideInfos'}>
+                            <form onSubmit={handleSubmit} key={`Train - ${TrainRide.id_train} ${index}`} className={reservations[index].payement_check ? 'rideInfos .valide' : 'rideInfos'}>
 
                                 <input type="hidden" name="id_Reservation" value={reservations[index].id_Reservation}/>
                                 <input type="hidden" name="id_train" value={TrainRide.id_train.toFixed(0)}/>
@@ -81,12 +87,8 @@ function TrainRides({reservations,data} : TrainRidesProps) {
                                             <p>{user ? user.name.last_name + ' ' + user.name.first_name : "Pas d'utilisateur renseigné"}</p>
                                         </div>
                                         <div>
-                                            <h2 className={bebasNeue.className}>Nombre de personnes</h2>
-                                            <p>{}</p>
-                                        </div>
-                                        <div>
-                                            <h2 className={bebasNeue.className}>Prix à l'unité</h2>
-                                            <p>{TrainRide.price}</p>
+                                            <h2 className={bebasNeue.className}>Prix total</h2>
+                                            <p>{reservations[index].total_price}</p>
                                         </div>
                                         
                                     </section>
